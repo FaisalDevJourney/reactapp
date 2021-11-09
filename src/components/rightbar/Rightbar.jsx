@@ -2,6 +2,7 @@ import './rightbar.css'
 import { Users } from '../../dummyData'
 import Online from '../online/Online'
 export default function Rightbar({profile}) {
+    const PF = process.env.REACT_APP_PUBLIC_FOLDER;
     const HomeRightbar = ()=>{
         return(
             <>
@@ -47,7 +48,7 @@ export default function Rightbar({profile}) {
                     <span className="rightbarFollowingName">Johnny</span>
                 </div>
                 <div className="rightbarFollowing">
-                    <img src="/assets/f2.jpg" alt="" className="rightbarFollowingImg" />
+                    <img src={PF+"f2.jpg"} alt="" className="rightbarFollowingImg" />
                     <span className="rightbarFollowingName">Johnny</span>
                 </div>
                 <div className="rightbarFollowing">
