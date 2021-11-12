@@ -1,12 +1,22 @@
-import { useRef } from 'react';
+import { useContext, useRef } from 'react';
 import './login.css'
+import { loginCall } from '../../apiCalls';
+import { AuthContext } from '../../context/AuthContext';
+import AutorenewIcon from '@mui/icons-material/Autorenew';
 
 export default function Login() {
     const email = useRef();
     const password = useRef();
+    const {user, isFetching, error, dispatch} = useContext(AuthContext);
+
+
+
     const handleClick = (e)=>{
         e.preventDefault();
-    }
+        loginCall({email: email.current.value, password: password.current.value}, dispatch);
+    };
+
+    console.log(user);
     return (
         <div className="login">
             <div className="loginWrapper">
@@ -17,8 +27,8 @@ export default function Login() {
                 <div className="loginRight">
                     <form className="loginBox" onSubmit={handleClick}>
                         <input placeholder="Email" type="email" className="loginInput" required ref={email} />
-                        <input placeholder="Password" type="password" className="loginInput" required minLength="6" ref={password} />
-                        <button className="loginButton">Login</button>
+                        <input placeholder="Password" type="password" className="loginInput" required minLength="3" ref={password} />
+                        <button className="loginButton">{isFetching ? <AutorenewIcon/> : "login"}</button>
                         <span className="loginForgot">Forgot Password?</span>
                         <button className="loginRegisterButton">create new account</button>
                     </form>
