@@ -20,8 +20,8 @@ export default function Share() {
         if(file){
             const data = new FormData();
             const fileName = Date.now() + file.name;
+            data.append("name",fileName);            
             data.append("file",file);
-            data.append("name",fileName);
             newPost.img = fileName;
             try{
                 await axios.post("/upload", data);
@@ -32,6 +32,7 @@ export default function Share() {
 
         try{
            await axios.post("/posts", newPost);
+           window.location.reload();
         }catch(err){
 
         }
@@ -44,7 +45,7 @@ export default function Share() {
                     <input placeholder={"whats in your mind "+user.username+"?"} ref={desc} className="shareInput" />
                 </div>
                 <hr className="shareHr" />
-                <form className="shareBottom" onSubmit={submitHandler}>
+                <form className="shareBottom" onSubmit={submitHandler} enctype="multipart/form-data">
                     <div className="shareOptions">
                         <label htmlFor="file" className="shareOption">
                             <PermMedia htmlColor="tomato" className="shareIcon"/>

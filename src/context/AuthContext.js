@@ -6,7 +6,10 @@ const INITIAL_STATE = {
         _id:"618e4b36399c994b4509ca66",
         username:"testing",
         email:"testing@gmail.com",
-        profilePicture:"f2.jpg"
+        profilePicture:"f2.jpg",
+        followings: {
+            0:"618e4a59399c994b4509ca5e"
+        }
     },
     isFetching: false,
     error: false
